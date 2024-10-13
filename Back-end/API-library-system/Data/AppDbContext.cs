@@ -17,11 +17,15 @@ namespace API_library_system.Data
 			modelBuilder.Entity<Book>();
 			modelBuilder.Entity<Audiobook>();
 
-			modelBuilder.Entity<LibraryItem>()
-				.HasMany<Reservation>()
-				.WithOne()
-				.HasForeignKey(r => r.BookId)
+			modelBuilder.Entity<Reservation>()
+				.HasOne(e => e.Book)
+				.WithMany()
+				.HasForeignKey(e => e.BookId)
+				.HasPrincipalKey(e => e.Id)
 				.IsRequired();
+
+			modelBuilder.Entity<Reservation>()
+				.Navigation(e => e.Book);
 		}
 	}
 }

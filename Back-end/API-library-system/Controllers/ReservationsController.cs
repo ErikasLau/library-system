@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using API_library_system.Data;
 using API_library_system.Models;
 using Microsoft.AspNetCore.Http.HttpResults;
+using API_library_system.DTO;
 
 namespace API_library_system.Controllers
 {
@@ -26,7 +27,9 @@ namespace API_library_system.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Reservation>>> GetReservations()
         {
-            return await _context.Reservations.ToListAsync();
+            return await _context.Reservations
+                .Include(r => r.Book)
+                .ToListAsync();
         }
 
         // GET: api/Reservations/5
@@ -83,14 +86,15 @@ namespace API_library_system.Controllers
 				return BadRequest();
 			}
 
-            LibraryItem book = _context.LibraryItems.Find(reservation.BookId);
+            LibraryItem book = await _context.LibraryItems.FindAsync(reservation.BookId);
 
             if (book == null)
             {
 				return NotFound();
 			}
-
+            
             reservation.Book = book;
+            reservation.CreatedAt = DateTime.Now;
 
             _context.Reservations.Add(reservation);
             await _context.SaveChangesAsync();
@@ -101,30 +105,48 @@ namespace API_library_system.Controllers
 		// POST: api/Price
 		[Route("/api/reservationPrice")]
 		[HttpGet]
-		public async Task<ActionResult<Reservation>> GetReservationPrice(Reservation reservation)
+		public async Task<ActionResult<ReservationPriceDto>> GetReservationPrice(
+			[FromQuery] long createdAt,
+			[FromQuery] DateTime fromDate,
+			[FromQuery] DateTime toDate,
+			[FromQuery] bool isQuickPickup,
+			[FromQuery] int bookId
+		)
 		{
 			int serviceFee = 3;
 			int quickPickup = 5;
 
 			decimal sum = 0;
+			decimal discount = 0;
 
-			if (reservation.BookId <= 0)
+			if (bookId <= 0)
 			{
 				return BadRequest();
 			}
 
-			LibraryItem book = await _context.LibraryItems.FindAsync(reservation.BookId);
+			LibraryItem book = await _context.LibraryItems.FindAsync(bookId);
 
 			if (book == null)
 			{
 				return NotFound();
 			}
 
-			int days = (int)Math.Ceiling((reservation.ToDate - reservation.FromDate).TotalDays);
+			int days = (int)Math.Ceiling((toDate - fromDate).TotalDays);
 
-			sum = days * book.Price * (decimal)(days > 3 && days <= 10 ? 0.9 : 1) * (decimal)(days > 10 ? 0.8 : 1) + serviceFee + (reservation.IsQuickPickUp ? quickPickup : 0);
+			decimal discountRate = (decimal)(days > 3 && days <= 10 ? 0.1 : days > 10 ? 0.2 : 0);
+			discount = days * book.Price * discountRate;
+			sum = days * book.Price * (1 - discountRate) + serviceFee + (isQuickPickup ? quickPickup : 0);
 
-			return Ok(sum);
+			var response = new ReservationPriceDto
+			{
+				TotalSum = sum,
+				DiscountSum = discount,
+				TotalDays = days,
+				ServiceFee = serviceFee,
+				QuickPickupFee = isQuickPickup ? quickPickup : 0
+			};
+
+			return Ok(response);
 		}
 
 		// DELETE: api/Reservations/5

@@ -11,9 +11,8 @@ namespace API_library_system.Models
 		public bool IsQuickPickUp { get; set; }
 		public LibraryItem? Book { get; set; }
 		public int BookId { get; set; }
-		public Reservation(DateTime createdAt, DateTime fromDate, DateTime toDate, bool isQuickPickUp)
+		public Reservation(DateTime fromDate, DateTime toDate, bool isQuickPickUp)
 		{
-			CreatedAt = createdAt;
 			FromDate = fromDate;
 			ToDate = toDate;
 			IsQuickPickUp = isQuickPickUp;
