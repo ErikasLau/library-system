@@ -11,12 +11,8 @@
       "RelativeMoniker": "D:0:0:{F71F4CAA-7007-40C6-8197-00C6AD7BC5BB}|API-library-system.csproj|solutionrelative:controllers\\libraryitemscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F71F4CAA-7007-40C6-8197-00C6AD7BC5BB}|API-library-system.csproj|c:\\users\\erikas\\desktop\\erikas\\present-connections-intern-task\\library-system\\back-end\\api-library-system\\models\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F71F4CAA-7007-40C6-8197-00C6AD7BC5BB}|API-library-system.csproj|solutionrelative:models\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F71F4CAA-7007-40C6-8197-00C6AD7BC5BB}|API-library-system.csproj|c:\\users\\erikas\\desktop\\erikas\\present-connections-intern-task\\library-system\\back-end\\api-library-system\\models\\audiobook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F71F4CAA-7007-40C6-8197-00C6AD7BC5BB}|API-library-system.csproj|solutionrelative:models\\audiobook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F71F4CAA-7007-40C6-8197-00C6AD7BC5BB}|API-library-system.csproj|c:\\users\\erikas\\desktop\\erikas\\present-connections-intern-task\\library-system\\back-end\\api-library-system\\models\\reservation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F71F4CAA-7007-40C6-8197-00C6AD7BC5BB}|API-library-system.csproj|solutionrelative:models\\reservation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F71F4CAA-7007-40C6-8197-00C6AD7BC5BB}|API-library-system.csproj|c:\\users\\erikas\\desktop\\erikas\\present-connections-intern-task\\library-system\\back-end\\api-library-system\\models\\libraryitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -27,12 +23,16 @@
       "RelativeMoniker": "D:0:0:{F71F4CAA-7007-40C6-8197-00C6AD7BC5BB}|API-library-system.csproj|solutionrelative:data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F71F4CAA-7007-40C6-8197-00C6AD7BC5BB}|API-library-system.csproj|c:\\users\\erikas\\desktop\\erikas\\present-connections-intern-task\\library-system\\back-end\\api-library-system\\models\\reservation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F71F4CAA-7007-40C6-8197-00C6AD7BC5BB}|API-library-system.csproj|solutionrelative:models\\reservation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F71F4CAA-7007-40C6-8197-00C6AD7BC5BB}|API-library-system.csproj|c:\\users\\erikas\\desktop\\erikas\\present-connections-intern-task\\library-system\\back-end\\api-library-system\\repositorie\\fileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F71F4CAA-7007-40C6-8197-00C6AD7BC5BB}|API-library-system.csproj|solutionrelative:repositorie\\fileservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F71F4CAA-7007-40C6-8197-00C6AD7BC5BB}|API-library-system.csproj|c:\\users\\erikas\\desktop\\erikas\\present-connections-intern-task\\library-system\\back-end\\api-library-system\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F71F4CAA-7007-40C6-8197-00C6AD7BC5BB}|API-library-system.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F71F4CAA-7007-40C6-8197-00C6AD7BC5BB}|API-library-system.csproj|c:\\users\\erikas\\desktop\\erikas\\present-connections-intern-task\\library-system\\back-end\\api-library-system\\models\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F71F4CAA-7007-40C6-8197-00C6AD7BC5BB}|API-library-system.csproj|solutionrelative:models\\book.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F71F4CAA-7007-40C6-8197-00C6AD7BC5BB}|API-library-system.csproj|c:\\users\\erikas\\desktop\\erikas\\present-connections-intern-task\\library-system\\back-end\\api-library-system\\models\\audiobook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F71F4CAA-7007-40C6-8197-00C6AD7BC5BB}|API-library-system.csproj|solutionrelative:models\\audiobook.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,19 +42,32 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ReservationsController.cs",
-              "DocumentMoniker": "C:\\Users\\Erikas\\Desktop\\Erikas\\Present-connections-intern-task\\library-system\\Back-end\\API-library-system\\Controllers\\ReservationsController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ReservationsController.cs",
-              "ToolTip": "C:\\Users\\Erikas\\Desktop\\Erikas\\Present-connections-intern-task\\library-system\\Back-end\\API-library-system\\Controllers\\ReservationsController.cs",
-              "RelativeToolTip": "Controllers\\ReservationsController.cs",
-              "ViewState": "AgIAAFEAAAAAAAAAAAAowFgAAABCAAAAAAAAAA==",
+              "DocumentIndex": 3,
+              "Title": "LibraryItem.cs",
+              "DocumentMoniker": "C:\\Users\\Erikas\\Desktop\\Erikas\\Present-connections-intern-task\\library-system\\Back-end\\API-library-system\\Models\\LibraryItem.cs",
+              "RelativeDocumentMoniker": "Models\\LibraryItem.cs",
+              "ToolTip": "C:\\Users\\Erikas\\Desktop\\Erikas\\Present-connections-intern-task\\library-system\\Back-end\\API-library-system\\Models\\LibraryItem.cs",
+              "RelativeToolTip": "Models\\LibraryItem.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-12T13:35:21.912Z",
+              "WhenOpened": "2024-10-12T10:59:23.016Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Reservation.cs",
+              "DocumentMoniker": "C:\\Users\\Erikas\\Desktop\\Erikas\\Present-connections-intern-task\\library-system\\Back-end\\API-library-system\\Models\\Reservation.cs",
+              "RelativeDocumentMoniker": "Models\\Reservation.cs",
+              "ToolTip": "C:\\Users\\Erikas\\Desktop\\Erikas\\Present-connections-intern-task\\library-system\\Back-end\\API-library-system\\Models\\Reservation.cs",
+              "RelativeToolTip": "Models\\Reservation.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-12T11:18:42.356Z",
               "EditorCaption": ""
             },
             {
@@ -65,72 +78,59 @@
               "RelativeDocumentMoniker": "Controllers\\LibraryItemsController.cs",
               "ToolTip": "C:\\Users\\Erikas\\Desktop\\Erikas\\Present-connections-intern-task\\library-system\\Back-end\\API-library-system\\Controllers\\LibraryItemsController.cs",
               "RelativeToolTip": "Controllers\\LibraryItemsController.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAE0AAAAAAAAAAAAkwGAAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-12T13:33:56.927Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "Reservation.cs",
-              "DocumentMoniker": "C:\\Users\\Erikas\\Desktop\\Erikas\\Present-connections-intern-task\\library-system\\Back-end\\API-library-system\\Models\\Reservation.cs",
-              "RelativeDocumentMoniker": "Models\\Reservation.cs",
-              "ToolTip": "C:\\Users\\Erikas\\Desktop\\Erikas\\Present-connections-intern-task\\library-system\\Back-end\\API-library-system\\Models\\Reservation.cs",
-              "RelativeToolTip": "Models\\Reservation.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAuwA0AAAALAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "ReservationsController.cs",
+              "DocumentMoniker": "C:\\Users\\Erikas\\Desktop\\Erikas\\Present-connections-intern-task\\library-system\\Back-end\\API-library-system\\Controllers\\ReservationsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ReservationsController.cs",
+              "ToolTip": "C:\\Users\\Erikas\\Desktop\\Erikas\\Present-connections-intern-task\\library-system\\Back-end\\API-library-system\\Controllers\\ReservationsController.cs",
+              "RelativeToolTip": "Controllers\\ReservationsController.cs",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAowHIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-12T11:18:42.356Z",
+              "WhenOpened": "2024-10-13T06:03:45.756Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 5,
+              "Title": "FileService.cs",
+              "DocumentMoniker": "C:\\Users\\Erikas\\Desktop\\Erikas\\Present-connections-intern-task\\library-system\\Back-end\\API-library-system\\Repositorie\\FileService.cs",
+              "RelativeDocumentMoniker": "Repositorie\\FileService.cs",
+              "ToolTip": "C:\\Users\\Erikas\\Desktop\\Erikas\\Present-connections-intern-task\\library-system\\Back-end\\API-library-system\\Repositorie\\FileService.cs",
+              "RelativeToolTip": "Repositorie\\FileService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAuwA4AAAA3AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-12T17:42:16.576Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "AppDbContext.cs",
               "DocumentMoniker": "C:\\Users\\Erikas\\Desktop\\Erikas\\Present-connections-intern-task\\library-system\\Back-end\\API-library-system\\Data\\AppDbContext.cs",
               "RelativeDocumentMoniker": "Data\\AppDbContext.cs",
               "ToolTip": "C:\\Users\\Erikas\\Desktop\\Erikas\\Present-connections-intern-task\\library-system\\Back-end\\API-library-system\\Data\\AppDbContext.cs",
               "RelativeToolTip": "Data\\AppDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAkAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-12T10:48:40.773Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "LibraryItem.cs",
-              "DocumentMoniker": "C:\\Users\\Erikas\\Desktop\\Erikas\\Present-connections-intern-task\\library-system\\Back-end\\API-library-system\\Models\\LibraryItem.cs",
-              "RelativeDocumentMoniker": "Models\\LibraryItem.cs",
-              "ToolTip": "C:\\Users\\Erikas\\Desktop\\Erikas\\Present-connections-intern-task\\library-system\\Back-end\\API-library-system\\Models\\LibraryItem.cs",
-              "RelativeToolTip": "Models\\LibraryItem.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAAB0AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-12T10:59:23.016Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Audiobook.cs",
-              "DocumentMoniker": "C:\\Users\\Erikas\\Desktop\\Erikas\\Present-connections-intern-task\\library-system\\Back-end\\API-library-system\\Models\\Audiobook.cs",
-              "RelativeDocumentMoniker": "Models\\Audiobook.cs",
-              "ToolTip": "C:\\Users\\Erikas\\Desktop\\Erikas\\Present-connections-intern-task\\library-system\\Back-end\\API-library-system\\Models\\Audiobook.cs",
-              "RelativeToolTip": "Models\\Audiobook.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAACAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-12T11:16:29.626Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 6,
               "Title": "Book.cs",
               "DocumentMoniker": "C:\\Users\\Erikas\\Desktop\\Erikas\\Present-connections-intern-task\\library-system\\Back-end\\API-library-system\\Models\\Book.cs",
               "RelativeDocumentMoniker": "Models\\Book.cs",
               "ToolTip": "C:\\Users\\Erikas\\Desktop\\Erikas\\Present-connections-intern-task\\library-system\\Back-end\\API-library-system\\Models\\Book.cs",
               "RelativeToolTip": "Models\\Book.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAAlAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAIAAABVAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-12T11:16:21.589Z",
               "EditorCaption": ""
@@ -138,14 +138,14 @@
             {
               "$type": "Document",
               "DocumentIndex": 7,
-              "Title": "Program.cs",
-              "DocumentMoniker": "C:\\Users\\Erikas\\Desktop\\Erikas\\Present-connections-intern-task\\library-system\\Back-end\\API-library-system\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "C:\\Users\\Erikas\\Desktop\\Erikas\\Present-connections-intern-task\\library-system\\Back-end\\API-library-system\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAACAAAAAAAAAA==",
+              "Title": "Audiobook.cs",
+              "DocumentMoniker": "C:\\Users\\Erikas\\Desktop\\Erikas\\Present-connections-intern-task\\library-system\\Back-end\\API-library-system\\Models\\Audiobook.cs",
+              "RelativeDocumentMoniker": "Models\\Audiobook.cs",
+              "ToolTip": "C:\\Users\\Erikas\\Desktop\\Erikas\\Present-connections-intern-task\\library-system\\Back-end\\API-library-system\\Models\\Audiobook.cs",
+              "RelativeToolTip": "Models\\Audiobook.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAABAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-12T11:29:29.997Z",
+              "WhenOpened": "2024-10-12T11:16:29.626Z",
               "EditorCaption": ""
             }
           ]

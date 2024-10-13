@@ -2,7 +2,7 @@
   {
     "ContainingType": "API_library_system.Controllers.LibraryItemsController",
     "Method": "GetLibraryItems",
-    "RelativePath": "api/LibraryItems",
+    "RelativePath": "api/library",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -21,34 +21,8 @@
   },
   {
     "ContainingType": "API_library_system.Controllers.LibraryItemsController",
-    "Method": "PostLibraryItem",
-    "RelativePath": "api/LibraryItems",
-    "HttpMethod": "POST",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "libraryItem",
-        "Type": "API_library_system.Models.LibraryItem",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": [
-      {
-        "Type": "API_library_system.Models.LibraryItem",
-        "MediaTypes": [
-          "text/plain",
-          "application/json",
-          "text/json"
-        ],
-        "StatusCode": 200
-      }
-    ]
-  },
-  {
-    "ContainingType": "API_library_system.Controllers.LibraryItemsController",
     "Method": "GetLibraryItem",
-    "RelativePath": "api/LibraryItems/{id}",
+    "RelativePath": "api/library/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -74,7 +48,7 @@
   {
     "ContainingType": "API_library_system.Controllers.LibraryItemsController",
     "Method": "PutLibraryItem",
-    "RelativePath": "api/LibraryItems/{id}",
+    "RelativePath": "api/library/{id}",
     "HttpMethod": "PUT",
     "IsController": true,
     "Order": 0,
@@ -95,7 +69,7 @@
   {
     "ContainingType": "API_library_system.Controllers.LibraryItemsController",
     "Method": "DeleteLibraryItem",
-    "RelativePath": "api/LibraryItems/{id}",
+    "RelativePath": "api/library/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,
@@ -107,6 +81,78 @@
       }
     ],
     "ReturnTypes": []
+  },
+  {
+    "ContainingType": "API_library_system.Controllers.LibraryItemsController",
+    "Method": "PostLibraryItemAudiobook",
+    "RelativePath": "api/library/audiobook",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Year",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "File",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "API_library_system.Models.Audiobook",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "API_library_system.Controllers.LibraryItemsController",
+    "Method": "PostLibraryItemBook",
+    "RelativePath": "api/library/book",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "Name",
+        "Type": "System.String",
+        "IsRequired": false
+      },
+      {
+        "Name": "Year",
+        "Type": "System.DateTime",
+        "IsRequired": false
+      },
+      {
+        "Name": "File",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "API_library_system.Models.Book",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
   },
   {
     "ContainingType": "API_library_system.Controllers.ReservationsController",
@@ -131,6 +177,32 @@
   {
     "ContainingType": "API_library_system.Controllers.ReservationsController",
     "Method": "PostReservation",
+    "RelativePath": "api/Reservations",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "reservation",
+        "Type": "API_library_system.Models.Reservation",
+        "IsRequired": true
+      }
+    ],
+    "ReturnTypes": [
+      {
+        "Type": "API_library_system.Models.Reservation",
+        "MediaTypes": [
+          "text/plain",
+          "application/json",
+          "text/json"
+        ],
+        "StatusCode": 200
+      }
+    ]
+  },
+  {
+    "ContainingType": "API_library_system.Controllers.ReservationsController",
+    "Method": "PostPrice",
     "RelativePath": "api/Reservations",
     "HttpMethod": "POST",
     "IsController": true,

@@ -1,5 +1,6 @@
 ﻿using API_library_system.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Reflection.Metadata;
 
 namespace API_library_system.Data
 {
@@ -10,13 +11,17 @@ namespace API_library_system.Data
 
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
-			modelBuilder.Entity<Book>();
-			modelBuilder.Entity<Audiobook>();
-
 			modelBuilder.Entity<Reservation>().HasKey(r => r.Id);
 			modelBuilder.Entity<LibraryItem>().HasKey(b => b.Id);
 
-			modelBuilder.Entity<Reservation>().HasOne(e => e.SelectedItem);
+			modelBuilder.Entity<Book>();
+			modelBuilder.Entity<Audiobook>();
+
+			modelBuilder.Entity<LibraryItem>()
+				.HasMany<Reservation>()
+				.WithOne()
+				.HasForeignKey(r => r.BookId)
+				.IsRequired();
 		}
 	}
 }

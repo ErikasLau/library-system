@@ -1,4 +1,6 @@
-﻿namespace API_library_system.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace API_library_system.Models
 {
 	public class Reservation
 	{
@@ -7,20 +9,14 @@
 		public DateTime FromDate { get; set; }
 		public DateTime ToDate { get; set; }
 		public bool IsQuickPickUp { get; set; }
-		public LibraryItem SelectedItem { get; set; }
-
-		public Reservation(int id, DateTime createdAt, DateTime fromDate, DateTime toDate, bool isQuickPickUp)
+		public LibraryItem? Book { get; set; }
+		public int BookId { get; set; }
+		public Reservation(DateTime createdAt, DateTime fromDate, DateTime toDate, bool isQuickPickUp)
 		{
-			Id = id;
 			CreatedAt = createdAt;
 			FromDate = fromDate;
 			ToDate = toDate;
 			IsQuickPickUp = isQuickPickUp;
-		}
-
-		public void SetSelectedItem(LibraryItem selectedItem)
-		{
-			SelectedItem = selectedItem;
 		}
 	}
 }

@@ -7,25 +7,29 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using API_library_system.Data;
 using API_library_system.Models;
+using AutoMapper;
+using API_library_system.Repositorie;
 
 namespace API_library_system.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/library")]
     [ApiController]
     public class LibraryItemsController : ControllerBase
     {
         private readonly AppDbContext _context;
+        //private readonly IMapper _mapper;
 
         public LibraryItemsController(AppDbContext context)
         {
             _context = context;
+            //_mapper = mapper;
         }
 
         // GET: api/LibraryItems
         [HttpGet]
         public async Task<ActionResult<IEnumerable<LibraryItem>>> GetLibraryItems()
         {
-            return await _context.LibraryItems.ToListAsync();
+			return await _context.LibraryItems.ToListAsync();
         }
 
         // GET: api/LibraryItems/5
@@ -73,19 +77,42 @@ namespace API_library_system.Controllers
             return NoContent();
         }
 
-        // POST: api/LibraryItems
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<LibraryItem>> PostLibraryItem(LibraryItem libraryItem)
+		[Route("book")]
+		// POST: api/LibraryItems
+		// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+		[HttpPost]
+        public async Task<ActionResult<Book>> PostLibraryItemBook([FromForm] string Name, [FromForm] DateTime Year, IFormFile File)
         {
-            _context.LibraryItems.Add(libraryItem);
+			var imageUtils = new FileService();
+			var imageBytes = await imageUtils.ConvertImageToBytesAsync(File, [".jpg", ".jpeg", ".png"]);
+
+            Book book = new(Name, Year, imageBytes);
+
+			_context.LibraryItems.Add(book);
             await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetLibraryItem", new { id = libraryItem.Id }, libraryItem);
+            return CreatedAtAction("GetLibraryItem", new { id = book.Id }, book);
         }
 
-        // DELETE: api/LibraryItems/5
-        [HttpDelete("{id}")]
+		[Route("audiobook")]
+		// POST: api/LibraryItems
+		// To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
+		[HttpPost]
+		public async Task<ActionResult<Audiobook>> PostLibraryItemAudiobook([FromForm] string Name, [FromForm] DateTime Year, IFormFile File)
+		{
+			var imageUtils = new FileService();
+			var imageBytes = await imageUtils.ConvertImageToBytesAsync(File, [".jpg", ".jpeg", ".png"]);
+
+            Audiobook audiobook = new(Name, Year, imageBytes);
+
+			_context.LibraryItems.Add(audiobook);
+			await _context.SaveChangesAsync();
+
+			return CreatedAtAction("GetLibraryItem", new { id = audiobook.Id }, audiobook);
+		}
+
+		// DELETE: api/LibraryItems/5
+		[HttpDelete("{id}")]
         public async Task<IActionResult> DeleteLibraryItem(int id)
         {
             var libraryItem = await _context.LibraryItems.FindAsync(id);
