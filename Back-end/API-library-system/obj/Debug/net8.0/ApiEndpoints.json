@@ -47,27 +47,6 @@
   },
   {
     "ContainingType": "API_library_system.Controllers.LibraryItemsController",
-    "Method": "PutLibraryItem",
-    "RelativePath": "api/library/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "libraryItem",
-        "Type": "API_library_system.Models.LibraryItem",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "API_library_system.Controllers.LibraryItemsController",
     "Method": "DeleteLibraryItem",
     "RelativePath": "api/library/{id}",
     "HttpMethod": "DELETE",
@@ -163,11 +142,6 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "createdAt",
-        "Type": "System.Int64",
-        "IsRequired": false
-      },
-      {
         "Name": "fromDate",
         "Type": "System.DateTime",
         "IsRequired": false
@@ -190,7 +164,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "API_library_system.DTO.ReservationPriceDto",
+        "Type": "API_library_system.Models.ReservationPrice",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -203,7 +177,7 @@
   {
     "ContainingType": "API_library_system.Controllers.ReservationsController",
     "Method": "GetReservations",
-    "RelativePath": "api/Reservations",
+    "RelativePath": "api/reservations",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -223,7 +197,7 @@
   {
     "ContainingType": "API_library_system.Controllers.ReservationsController",
     "Method": "PostReservation",
-    "RelativePath": "api/Reservations",
+    "RelativePath": "api/reservations",
     "HttpMethod": "POST",
     "IsController": true,
     "Order": 0,
@@ -249,7 +223,7 @@
   {
     "ContainingType": "API_library_system.Controllers.ReservationsController",
     "Method": "GetReservation",
-    "RelativePath": "api/Reservations/{id}",
+    "RelativePath": "api/reservations/{id}",
     "HttpMethod": "GET",
     "IsController": true,
     "Order": 0,
@@ -274,29 +248,8 @@
   },
   {
     "ContainingType": "API_library_system.Controllers.ReservationsController",
-    "Method": "PutReservation",
-    "RelativePath": "api/Reservations/{id}",
-    "HttpMethod": "PUT",
-    "IsController": true,
-    "Order": 0,
-    "Parameters": [
-      {
-        "Name": "id",
-        "Type": "System.Int32",
-        "IsRequired": true
-      },
-      {
-        "Name": "reservation",
-        "Type": "API_library_system.Models.Reservation",
-        "IsRequired": true
-      }
-    ],
-    "ReturnTypes": []
-  },
-  {
-    "ContainingType": "API_library_system.Controllers.ReservationsController",
     "Method": "DeleteReservation",
-    "RelativePath": "api/Reservations/{id}",
+    "RelativePath": "api/reservations/{id}",
     "HttpMethod": "DELETE",
     "IsController": true,
     "Order": 0,

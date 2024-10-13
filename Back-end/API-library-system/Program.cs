@@ -1,4 +1,5 @@
 using API_library_system.Data;
+using API_library_system.Services;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,7 +12,8 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 builder.Services.AddCors(options
- => {
+ =>
+{
 	options.AddPolicy("AllowAll", policy =>
 	{
 		policy.AllowAnyOrigin()
@@ -23,6 +25,7 @@ builder.Services.AddCors(options
 builder.Services.AddDbContext<AppDbContext>(options =>
 	options.UseInMemoryDatabase(builder.Configuration.GetConnectionString("Database"))
 );
+builder.Services.AddScoped<ReservationServices>();
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

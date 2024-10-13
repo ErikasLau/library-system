@@ -1,7 +1,8 @@
-﻿namespace API_library_system.DTO
+﻿namespace API_library_system.Models
 {
-	public class ReservationPriceDto
+	public class ReservationPrice
 	{
+		public int Id { get; set; }
 		public decimal TotalSum { get; set; }
 		public decimal DiscountSum { get; set; }
 		public int TotalDays { get; set; }
