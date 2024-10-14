@@ -1,6 +1,4 @@
 export default function Reservation({ reservation }) {
-  console.log(reservation);
-
   const formatDate = (date) => date.split("T")[0];
 
   const formattedCreatedAt = formatDate(reservation.createdAt);

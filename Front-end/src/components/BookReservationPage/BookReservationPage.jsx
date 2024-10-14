@@ -27,19 +27,19 @@ export default function BookReservationPage() {
   );
   const [isQuickPickup, setIsQuickPickup] = useState(false);
   const [notification, setNotification] = useState({
-    message: "",
+    message: "Test",
     type: "error",
-    show: true,
+    show: false,
   });
 
   useEffect(() => {
-    if (!notification.show) {
+    if (notification.show) {
       const timeoutId = setTimeout(
         () =>
           setNotification({
             message: "",
             type: "error",
-            show: true,
+            show: false,
           }),
         5000
       );
@@ -78,7 +78,7 @@ export default function BookReservationPage() {
     let notification = {
       message: "Reservation completed successfully!",
       type: "succes",
-      show: false,
+      show: true,
     };
 
     try {
@@ -93,7 +93,7 @@ export default function BookReservationPage() {
       notification = {
         message: "There was an error while completing reservation.",
         type: "error",
-        show: false,
+        show: true,
       };
     } finally {
       setStartDate(new Date());
@@ -109,10 +109,10 @@ export default function BookReservationPage() {
       <div
         className={
           notification.type === "error"
-            ? "bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative"
-            : "bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative"
+            ? "bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded fixed left-2/4 -translate-x-2/4 z-50 min-w-40"
+            : "bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded fixed left-2/4 -translate-x-2/4 z-50 min-w-40"
         }
-        hidden={notification.show}
+        hidden={!notification.show}
       >
         <span className="block sm:inline">{notification.message}</span>
       </div>

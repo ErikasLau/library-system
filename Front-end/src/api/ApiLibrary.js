@@ -1,6 +1,8 @@
 import axios from "axios";
 
-const url = "https://localhost:7261/api/library";
+const url = `${import.meta.env.VITE_URL}:${
+  import.meta.env.VITE_PORT
+}/api/library`;
 
 const getLibraryItems = async (search) => {
   return (await axios.get(url, { params: { search: search } })).data;

@@ -1,4 +1,5 @@
 using API_library_system.Data;
+using API_library_system.Mapper;
 using API_library_system.Services;
 using Microsoft.EntityFrameworkCore;
 
@@ -22,10 +23,14 @@ builder.Services.AddCors(options
 	});
 });
 
+builder.Services.AddAutoMapper(typeof(MappingProfile));
+
 builder.Services.AddDbContext<AppDbContext>(options =>
 	options.UseInMemoryDatabase(builder.Configuration.GetConnectionString("Database"))
 );
+
 builder.Services.AddScoped<ReservationServices>();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

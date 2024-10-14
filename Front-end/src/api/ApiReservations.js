@@ -1,6 +1,9 @@
 import axios from "axios";
 
-const url = "https://localhost:7261/api";
+const url = `${import.meta.env.VITE_URL}:${
+  import.meta.env.VITE_PORT
+}/api`;
+console.log(url)
 
 const getReservations = async () => {
   return (await axios.get(`${url}/reservations`)).data;
