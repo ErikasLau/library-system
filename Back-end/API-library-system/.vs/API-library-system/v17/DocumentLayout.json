@@ -3,12 +3,8 @@
   "WorkspaceRootPath": "C:\\Users\\Erikas\\Desktop\\Erikas\\Present-connections-intern-task\\library-system\\Back-end\\API-library-system\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F71F4CAA-7007-40C6-8197-00C6AD7BC5BB}|API-library-system.csproj|c:\\users\\erikas\\desktop\\erikas\\present-connections-intern-task\\library-system\\back-end\\api-library-system\\controllers\\reservationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F71F4CAA-7007-40C6-8197-00C6AD7BC5BB}|API-library-system.csproj|solutionrelative:controllers\\reservationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{F71F4CAA-7007-40C6-8197-00C6AD7BC5BB}|API-library-system.csproj|c:\\users\\erikas\\desktop\\erikas\\present-connections-intern-task\\library-system\\back-end\\api-library-system\\services\\reservationservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F71F4CAA-7007-40C6-8197-00C6AD7BC5BB}|API-library-system.csproj|solutionrelative:services\\reservationservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{F71F4CAA-7007-40C6-8197-00C6AD7BC5BB}|API-library-system.csproj|c:\\users\\erikas\\desktop\\erikas\\present-connections-intern-task\\library-system\\back-end\\api-library-system\\controllers\\libraryitemscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F71F4CAA-7007-40C6-8197-00C6AD7BC5BB}|API-library-system.csproj|solutionrelative:controllers\\libraryitemscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{F71F4CAA-7007-40C6-8197-00C6AD7BC5BB}|API-library-system.csproj|c:\\users\\erikas\\desktop\\erikas\\present-connections-intern-task\\library-system\\back-end\\api-library-system\\data\\appdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -19,12 +15,16 @@
       "RelativeMoniker": "D:0:0:{F71F4CAA-7007-40C6-8197-00C6AD7BC5BB}|API-library-system.csproj|solutionrelative:models\\reservation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{F71F4CAA-7007-40C6-8197-00C6AD7BC5BB}|API-library-system.csproj|c:\\users\\erikas\\desktop\\erikas\\present-connections-intern-task\\library-system\\back-end\\api-library-system\\models\\libraryitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F71F4CAA-7007-40C6-8197-00C6AD7BC5BB}|API-library-system.csproj|solutionrelative:models\\libraryitem.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F71F4CAA-7007-40C6-8197-00C6AD7BC5BB}|API-library-system.csproj|c:\\users\\erikas\\desktop\\erikas\\present-connections-intern-task\\library-system\\back-end\\api-library-system\\models\\reservationprice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F71F4CAA-7007-40C6-8197-00C6AD7BC5BB}|API-library-system.csproj|solutionrelative:models\\reservationprice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F71F4CAA-7007-40C6-8197-00C6AD7BC5BB}|API-library-system.csproj|c:\\users\\erikas\\desktop\\erikas\\present-connections-intern-task\\library-system\\back-end\\api-library-system\\services\\reservationservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F71F4CAA-7007-40C6-8197-00C6AD7BC5BB}|API-library-system.csproj|solutionrelative:services\\reservationservices.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{F71F4CAA-7007-40C6-8197-00C6AD7BC5BB}|API-library-system.csproj|c:\\users\\erikas\\desktop\\erikas\\present-connections-intern-task\\library-system\\back-end\\api-library-system\\controllers\\reservationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{F71F4CAA-7007-40C6-8197-00C6AD7BC5BB}|API-library-system.csproj|solutionrelative:controllers\\reservationscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,11 +34,37 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 5,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "LibraryItemsController.cs",
+              "DocumentMoniker": "C:\\Users\\Erikas\\Desktop\\Erikas\\Present-connections-intern-task\\library-system\\Back-end\\API-library-system\\Controllers\\LibraryItemsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\LibraryItemsController.cs",
+              "ToolTip": "C:\\Users\\Erikas\\Desktop\\Erikas\\Present-connections-intern-task\\library-system\\Back-end\\API-library-system\\Controllers\\LibraryItemsController.cs",
+              "RelativeToolTip": "Controllers\\LibraryItemsController.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAACEAAABFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-13T19:23:13.341Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "ReservationsController.cs",
+              "DocumentMoniker": "C:\\Users\\Erikas\\Desktop\\Erikas\\Present-connections-intern-task\\library-system\\Back-end\\API-library-system\\Controllers\\ReservationsController.cs",
+              "RelativeDocumentMoniker": "Controllers\\ReservationsController.cs",
+              "ToolTip": "C:\\Users\\Erikas\\Desktop\\Erikas\\Present-connections-intern-task\\library-system\\Back-end\\API-library-system\\Controllers\\ReservationsController.cs",
+              "RelativeToolTip": "Controllers\\ReservationsController.cs",
+              "ViewState": "AgIAAEkAAAAAAAAAAAAkwFIAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-13T14:45:34.578Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
               "Title": "ReservationServices.cs",
               "DocumentMoniker": "C:\\Users\\Erikas\\Desktop\\Erikas\\Present-connections-intern-task\\library-system\\Back-end\\API-library-system\\Services\\ReservationServices.cs",
               "RelativeDocumentMoniker": "Services\\ReservationServices.cs",
@@ -51,20 +77,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "LibraryItem.cs",
-              "DocumentMoniker": "C:\\Users\\Erikas\\Desktop\\Erikas\\Present-connections-intern-task\\library-system\\Back-end\\API-library-system\\Models\\LibraryItem.cs",
-              "RelativeDocumentMoniker": "Models\\LibraryItem.cs",
-              "ToolTip": "C:\\Users\\Erikas\\Desktop\\Erikas\\Present-connections-intern-task\\library-system\\Back-end\\API-library-system\\Models\\LibraryItem.cs",
-              "RelativeToolTip": "Models\\LibraryItem.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-13T14:27:26.113Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 3,
               "Title": "ReservationPrice.cs",
               "DocumentMoniker": "C:\\Users\\Erikas\\Desktop\\Erikas\\Present-connections-intern-task\\library-system\\Back-end\\API-library-system\\Models\\ReservationPrice.cs",
               "RelativeDocumentMoniker": "Models\\ReservationPrice.cs",
@@ -77,7 +90,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "Reservation.cs",
               "DocumentMoniker": "C:\\Users\\Erikas\\Desktop\\Erikas\\Present-connections-intern-task\\library-system\\Back-end\\API-library-system\\Models\\Reservation.cs",
               "RelativeDocumentMoniker": "Models\\Reservation.cs",
@@ -90,28 +103,15 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 1,
               "Title": "AppDbContext.cs",
               "DocumentMoniker": "C:\\Users\\Erikas\\Desktop\\Erikas\\Present-connections-intern-task\\library-system\\Back-end\\API-library-system\\Data\\AppDbContext.cs",
               "RelativeDocumentMoniker": "Data\\AppDbContext.cs",
               "ToolTip": "C:\\Users\\Erikas\\Desktop\\Erikas\\Present-connections-intern-task\\library-system\\Back-end\\API-library-system\\Data\\AppDbContext.cs",
               "RelativeToolTip": "Data\\AppDbContext.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAfAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-12T10:48:40.773Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ReservationsController.cs",
-              "DocumentMoniker": "C:\\Users\\Erikas\\Desktop\\Erikas\\Present-connections-intern-task\\library-system\\Back-end\\API-library-system\\Controllers\\ReservationsController.cs",
-              "RelativeDocumentMoniker": "Controllers\\ReservationsController.cs",
-              "ToolTip": "C:\\Users\\Erikas\\Desktop\\Erikas\\Present-connections-intern-task\\library-system\\Back-end\\API-library-system\\Controllers\\ReservationsController.cs",
-              "RelativeToolTip": "Controllers\\ReservationsController.cs",
-              "ViewState": "AgIAAGAAAAAAAAAAAAAowHUAAAAWAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-13T14:45:34.578Z",
               "EditorCaption": ""
             }
           ]

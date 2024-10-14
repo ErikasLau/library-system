@@ -25,6 +25,7 @@ namespace API_library_system.Controllers
 		{
 			return await _context.Reservations
 				.Include(r => r.Book)
+				.Include(r => r.TotalPrice)
 				.ToListAsync();
 		}
 

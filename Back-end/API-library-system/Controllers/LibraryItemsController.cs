@@ -19,8 +19,13 @@ namespace API_library_system.Controllers
 
 		// GET: api/library
 		[HttpGet]
-		public async Task<ActionResult<IEnumerable<LibraryItem>>> GetLibraryItems()
+		public async Task<ActionResult<IEnumerable<LibraryItem>>> GetLibraryItems([FromQuery] string? search)
 		{
+			if (search != null)
+			{
+				return await _context.LibraryItems.Where(r => r.Name.Contains(search) || r.Year.ToString().Contains(search)).ToListAsync();
+			}
+
 			return await _context.LibraryItems.ToListAsync();
 		}
 
