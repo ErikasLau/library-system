@@ -1,8 +1,6 @@
-﻿using API_library_system.Models;
-
-namespace API_library_system.Dto
+﻿namespace API_library_system.DTO
 {
-	public class LibraryItemDto
+	public class LibraryItemDTO
 	{
 		public int Id { get; set; }
 		public byte[] PictureData { get; set; }

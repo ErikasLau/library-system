@@ -15,7 +15,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.List\u00601[[API_library_system.Dto.LibraryItemDto, API-library-system, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[API_library_system.DTO.LibraryItemDTO, API-library-system, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -41,7 +41,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "API_library_system.Dto.LibraryItemDto",
+        "Type": "API_library_system.DTO.LibraryItemDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -81,7 +81,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Year",
+        "Name": "PublishDate",
         "Type": "System.DateTime",
         "IsRequired": false
       },
@@ -93,7 +93,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "API_library_system.Dto.LibraryItemDto",
+        "Type": "API_library_system.DTO.LibraryItemDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -117,7 +117,7 @@
         "IsRequired": false
       },
       {
-        "Name": "Year",
+        "Name": "PublishDate",
         "Type": "System.DateTime",
         "IsRequired": false
       },
@@ -129,13 +129,13 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "API_library_system.Dto.LibraryItemDto",
+        "Type": "API_library_system.DTO.LibraryItemDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",
           "text/json"
         ],
-        "StatusCode": 200
+        "StatusCode": 201
       }
     ]
   },
@@ -190,7 +190,7 @@
     "Parameters": [],
     "ReturnTypes": [
       {
-        "Type": "System.Collections.Generic.IEnumerable\u00601[[API_library_system.Models.Reservation, API-library-system, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
+        "Type": "System.Collections.Generic.IEnumerable\u00601[[API_library_system.DTO.ReservationDTO, API-library-system, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]",
         "MediaTypes": [
           "text/plain",
           "application/json",
@@ -242,7 +242,7 @@
     ],
     "ReturnTypes": [
       {
-        "Type": "API_library_system.Models.Reservation",
+        "Type": "API_library_system.DTO.ReservationDTO",
         "MediaTypes": [
           "text/plain",
           "application/json",

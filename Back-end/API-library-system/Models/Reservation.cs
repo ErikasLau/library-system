@@ -3,7 +3,7 @@
 	public class Reservation
 	{
 		public int Id { get; set; }
-		public DateTime CreatedAt { get; set; }
+		public DateTime CreatedAt { get; } = DateTime.Now;
 		public DateTime FromDate { get; set; }
 		public DateTime ToDate { get; set; }
 		public bool IsQuickPickUp { get; set; }

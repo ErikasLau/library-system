@@ -1,10 +1,9 @@
 ﻿using API_library_system.Data;
-using API_library_system.Dto;
+using API_library_system.DTO;
 using API_library_system.Models;
-using API_library_system.Repositorie;
+using API_library_system.Services;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,28 +15,30 @@ namespace API_library_system.Controllers
 	{
 		private readonly AppDbContext _context;
 		private readonly IMapper _mapper;
+		private readonly FileService _fileService;
 
-		public LibraryItemsController(AppDbContext context, IMapper mapper)
+		public LibraryItemsController(AppDbContext context, IMapper mapper, FileService fileService)
 		{
 			_context = context;
 			_mapper = mapper;
+			_fileService = fileService;
 		}
 
 		// GET: api/library
 		[HttpGet]
-		public async Task<ActionResult<List<LibraryItemDto>>> GetLibraryItems([FromQuery] string? search)
+		public async Task<ActionResult<IEnumerable<LibraryItemDTO>>> GetLibraryItems([FromQuery] string? search)
 		{
 			if (search != null)
 			{
-				return await _context.LibraryItems.Where(r => r.Name.Contains(search) || r.Year.ToString().Contains(search) || r.BookType.ToString().Contains(search)).ProjectTo<LibraryItemDto>(_mapper.ConfigurationProvider).ToListAsync();
+				return await _context.LibraryItems.Where(r => r.Name.Contains(search) || r.Year.ToString().Contains(search) || r.BookType.ToString().Contains(search)).ProjectTo<LibraryItemDTO>(_mapper.ConfigurationProvider).ToListAsync();
 			}
 
-			return await _context.LibraryItems.ProjectTo<LibraryItemDto>(_mapper.ConfigurationProvider).ToListAsync();
+			return await _context.LibraryItems.ProjectTo<LibraryItemDTO>(_mapper.ConfigurationProvider).ToListAsync();
 		}
 
 		// GET: api/library/5
 		[HttpGet("{id}")]
-		public async Task<ActionResult<LibraryItemDto>> GetLibraryItem(int id)
+		public async Task<ActionResult<LibraryItemDTO>> GetLibraryItem(int id)
 		{
 			var libraryItem = await _context.LibraryItems.FindAsync(id);
 
@@ -46,44 +47,49 @@ namespace API_library_system.Controllers
 				return NotFound();
 			}
 
-			return _mapper.Map<LibraryItemDto>(libraryItem);
+			return _mapper.Map<LibraryItemDTO>(libraryItem);
 		}
 
 		[Route("book")]
 		// POST: api/library/audiobook
 		[HttpPost]
-		public async Task<ActionResult<LibraryItemDto>> PostLibraryItemBook([FromForm] string Name, [FromForm] DateTime Year, IFormFile File)
+		[ProducesResponseType(StatusCodes.Status201Created)]
+		public async Task<ActionResult<LibraryItemDTO>> PostLibraryItemBook([FromForm] string Name, [FromForm] DateTime PublishDate, IFormFile File)
 		{
-			var imageUtils = new FileService();
-			var imageBytes = await imageUtils.ConvertImageToBytesAsync(File, [".jpg", ".jpeg", ".png"]);
+			if (!_fileService.AllowedDataType(File))
+			{
+				return BadRequest();
+			}
 
-			Book book = new(Name, Year, imageBytes, BookType.Book);
+			byte[] imageBytes = await _fileService.ConvertImageToBytesAsync(File);
+
+			Book book = new(Name, PublishDate, imageBytes, BookType.Book);
 
 			_context.LibraryItems.Add(book);
 			await _context.SaveChangesAsync();
 
-			var map = _mapper.Map<Book, LibraryItemDto>(book);
+			var mappedBook = _mapper.Map<Book, LibraryItemDTO>(book);
 
-			return map;
+			return CreatedAtAction("GetLibraryItems", new { id = mappedBook.Id }, mappedBook);
 		}
 
 		[Route("audiobook")]
 		// POST: api/library/audiobook
 		[HttpPost]
 		[ProducesResponseType(StatusCodes.Status201Created)]
-		public async Task<ActionResult<LibraryItemDto>> PostLibraryItemAudiobook([FromForm] string Name, [FromForm] DateTime Year, IFormFile File)
+		public async Task<ActionResult<LibraryItemDTO>> PostLibraryItemAudiobook([FromForm] string Name, [FromForm] DateTime PublishDate, IFormFile File)
 		{
 			var imageUtils = new FileService();
-			var imageBytes = await imageUtils.ConvertImageToBytesAsync(File, [".jpg", ".jpeg"]);
+			var imageBytes = await imageUtils.ConvertImageToBytesAsync(File);
 
-			Audiobook audiobook = new(Name, Year, imageBytes, BookType.Audiobook);
+			Audiobook audiobook = new(Name, PublishDate, imageBytes, BookType.Audiobook);
 
 			_context.LibraryItems.Add(audiobook);
 			await _context.SaveChangesAsync();
 
-			var map = _mapper.Map<Audiobook, LibraryItemDto>(audiobook);
+			var mappedAudiobook = _mapper.Map<Audiobook, LibraryItemDTO>(audiobook);
 
-			return map;
+			return CreatedAtAction("GetLibraryItems", new { id = mappedAudiobook.Id }, mappedAudiobook);
 		}
 
 		// DELETE: api/library/5

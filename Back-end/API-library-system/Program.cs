@@ -30,6 +30,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 );
 
 builder.Services.AddScoped<ReservationServices>();
+builder.Services.AddScoped<FileService>();
 
 var app = builder.Build();
 
