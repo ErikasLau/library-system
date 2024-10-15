@@ -1,6 +1,6 @@
 ﻿namespace API_library_system.Models
 {
-	public class Audiobook(int id, byte[] pictureData, string pictureContentType, string name, DateTime year) : LibraryItem(id, pictureData, pictureContentType, name, year)
+	public class Audiobook(string name, DateTime year, byte[] pictureData, BookType bookType) : LibraryItem(name, year, pictureData, bookType)
 	{
 		public override decimal Price => 3;
 	}

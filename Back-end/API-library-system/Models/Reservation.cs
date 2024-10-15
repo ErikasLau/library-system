@@ -3,24 +3,19 @@
 	public class Reservation
 	{
 		public int Id { get; set; }
-		public DateTime CreatedAt { get; set; }
+		public DateTime CreatedAt { get; } = DateTime.Now;
 		public DateTime FromDate { get; set; }
 		public DateTime ToDate { get; set; }
 		public bool IsQuickPickUp { get; set; }
-		public LibraryItem SelectedItem { get; set; }
-
-		public Reservation(int id, DateTime createdAt, DateTime fromDate, DateTime toDate, bool isQuickPickUp)
+		public ReservationPrice? TotalPrice { get; set; }
+		public LibraryItem? Book { get; set; }
+		public int BookId { get; set; }
+		public Reservation(DateTime fromDate, DateTime toDate, bool isQuickPickUp, int bookId)
 		{
-			Id = id;
-			CreatedAt = createdAt;
 			FromDate = fromDate;
 			ToDate = toDate;
 			IsQuickPickUp = isQuickPickUp;
-		}
-
-		public void SetSelectedItem(LibraryItem selectedItem)
-		{
-			SelectedItem = selectedItem;
+			BookId = bookId;
 		}
 	}
 }

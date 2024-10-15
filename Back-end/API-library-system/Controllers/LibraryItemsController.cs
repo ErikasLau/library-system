@@ -1,108 +1,110 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using API_library_system.Data;
+using API_library_system.DTO;
+using API_library_system.Models;
+using API_library_system.Services;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using API_library_system.Data;
-using API_library_system.Models;
 
 namespace API_library_system.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class LibraryItemsController : ControllerBase
-    {
-        private readonly AppDbContext _context;
+	[Route("api/library")]
+	[ApiController]
+	public class LibraryItemsController : ControllerBase
+	{
+		private readonly AppDbContext _context;
+		private readonly IMapper _mapper;
+		private readonly IFileService _fileService;
 
-        public LibraryItemsController(AppDbContext context)
-        {
-            _context = context;
-        }
+		public LibraryItemsController(AppDbContext context, IMapper mapper, IFileService fileService)
+		{
+			_context = context;
+			_mapper = mapper;
+			_fileService = fileService;
+		}
 
-        // GET: api/LibraryItems
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<LibraryItem>>> GetLibraryItems()
-        {
-            return await _context.LibraryItems.ToListAsync();
-        }
+		// GET: api/library
+		[HttpGet]
+		public async Task<ActionResult<IEnumerable<LibraryItemDTO>>> GetLibraryItems([FromQuery] string? search)
+		{
+			if (search != null)
+			{
+				var searchedLibrary = await _context.LibraryItems.Where(r => r.Name.Contains(search) || r.Year.ToString().Contains(search) || r.BookType.ToString().Contains(search)).ToListAsync();
+				return _mapper.Map<IEnumerable<LibraryItem>, List<LibraryItemDTO>>(searchedLibrary);
+			}
 
-        // GET: api/LibraryItems/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<LibraryItem>> GetLibraryItem(int id)
-        {
-            var libraryItem = await _context.LibraryItems.FindAsync(id);
+			var library = await _context.LibraryItems.ToListAsync();
+			return _mapper.Map<IEnumerable<LibraryItem>, List<LibraryItemDTO>>(library);
+		}
 
-            if (libraryItem == null)
-            {
-                return NotFound();
-            }
+		// GET: api/library/5
+		[HttpGet("{id}")]
+		public async Task<ActionResult<LibraryItemDTO>> GetLibraryItem(int id)
+		{
+			var libraryItem = await _context.LibraryItems.FindAsync(id);
 
-            return libraryItem;
-        }
+			if (libraryItem == null)
+			{
+				return NotFound();
+			}
 
-        // PUT: api/LibraryItems/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutLibraryItem(int id, LibraryItem libraryItem)
-        {
-            if (id != libraryItem.Id)
-            {
-                return BadRequest();
-            }
+			return _mapper.Map<LibraryItemDTO>(libraryItem);
+		}
 
-            _context.Entry(libraryItem).State = EntityState.Modified;
+		[Route("book")]
+		// POST: api/library/audiobook
+		[HttpPost]
+		public async Task<ActionResult<LibraryItemDTO>> PostLibraryItemBook([FromForm] LibraryItemInputDTO libraryItemInputDTO)
+		{
+			if (!_fileService.CheckAllowedDataType(libraryItemInputDTO.File))
+			{
+				return BadRequest();
+			}
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!LibraryItemExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+			byte[] imageBytes = await _fileService.ConvertImageToBytesAsync(libraryItemInputDTO.File);
 
-            return NoContent();
-        }
+			Book book = new(libraryItemInputDTO.Name, libraryItemInputDTO.PublishDate, imageBytes, BookType.Book);
 
-        // POST: api/LibraryItems
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<LibraryItem>> PostLibraryItem(LibraryItem libraryItem)
-        {
-            _context.LibraryItems.Add(libraryItem);
-            await _context.SaveChangesAsync();
+			_context.LibraryItems.Add(book);
+			await _context.SaveChangesAsync();
 
-            return CreatedAtAction("GetLibraryItem", new { id = libraryItem.Id }, libraryItem);
-        }
+			var mappedBook = _mapper.Map<Book, LibraryItemDTO>(book);
 
-        // DELETE: api/LibraryItems/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteLibraryItem(int id)
-        {
-            var libraryItem = await _context.LibraryItems.FindAsync(id);
-            if (libraryItem == null)
-            {
-                return NotFound();
-            }
+			return CreatedAtAction("GetLibraryItems", new { id = mappedBook.Id }, mappedBook);
+		}
 
-            _context.LibraryItems.Remove(libraryItem);
-            await _context.SaveChangesAsync();
+		[Route("audiobook")]
+		// POST: api/library/audiobook
+		[HttpPost]
+		public async Task<ActionResult<LibraryItemDTO>> PostLibraryItemAudiobook([FromForm] LibraryItemInputDTO libraryItemInputDTO)
+		{
+			var imageUtils = new FileService();
+			var imageBytes = await imageUtils.ConvertImageToBytesAsync(libraryItemInputDTO.File);
 
-            return NoContent();
-        }
+			Audiobook audiobook = new(libraryItemInputDTO.Name, libraryItemInputDTO.PublishDate, imageBytes, BookType.Audiobook);
 
-        private bool LibraryItemExists(int id)
-        {
-            return _context.LibraryItems.Any(e => e.Id == id);
-        }
-    }
+			_context.LibraryItems.Add(audiobook);
+			await _context.SaveChangesAsync();
+
+			var mappedAudiobook = _mapper.Map<Audiobook, LibraryItemDTO>(audiobook);
+
+			return CreatedAtAction("GetLibraryItems", new { id = mappedAudiobook.Id }, mappedAudiobook);
+		}
+
+		// DELETE: api/library/5
+		[HttpDelete("{id}")]
+		public async Task<IActionResult> DeleteLibraryItem(int id)
+		{
+			var libraryItem = await _context.LibraryItems.FindAsync(id);
+			if (libraryItem == null)
+			{
+				return NotFound();
+			}
+
+			_context.LibraryItems.Remove(libraryItem);
+			await _context.SaveChangesAsync();
+
+			return NoContent();
+		}
+	}
 }

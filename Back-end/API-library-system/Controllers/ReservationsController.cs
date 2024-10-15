@@ -1,108 +1,146 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;
+﻿using API_library_system.Data;
+using API_library_system.DTO;
+using API_library_system.Models;
+using API_library_system.Services;
+using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
-using API_library_system.Data;
-using API_library_system.Models;
 
 namespace API_library_system.Controllers
 {
-    [Route("api/[controller]")]
-    [ApiController]
-    public class ReservationsController : ControllerBase
-    {
-        private readonly AppDbContext _context;
+	[Route("api/reservations")]
+	[ApiController]
+	public class ReservationsController : ControllerBase
+	{
+		private readonly AppDbContext _context;
+		private readonly IMapper _mapper;
+		private readonly IReservationServices _services;
 
-        public ReservationsController(AppDbContext context)
-        {
-            _context = context;
-        }
+		public ReservationsController(AppDbContext context, IReservationServices services, IMapper mapper)
+		{
+			_context = context;
+			_services = services;
+			_mapper = mapper;
+		}
 
-        // GET: api/Reservations
-        [HttpGet]
-        public async Task<ActionResult<IEnumerable<Reservation>>> GetReservations()
-        {
-            return await _context.Reservations.ToListAsync();
-        }
+		// GET: api/reservations
+		[HttpGet]
+		public async Task<ActionResult<IEnumerable<ReservationDTO>>> GetReservations()
+		{
+			var reservations = await _context.Reservations
+				.Include(r => r.Book)
+				.Include(r => r.TotalPrice)
+				.ToListAsync();
 
-        // GET: api/Reservations/5
-        [HttpGet("{id}")]
-        public async Task<ActionResult<Reservation>> GetReservation(int id)
-        {
-            var reservation = await _context.Reservations.FindAsync(id);
+			return _mapper.Map<IEnumerable<Reservation>, List<ReservationDTO>>(reservations);
+		}
 
-            if (reservation == null)
-            {
-                return NotFound();
-            }
+		// GET: api/reservations/5
+		[HttpGet("{id}")]
+		public async Task<ActionResult<ReservationDTO>> GetReservation(int id)
+		{
+			var reservation = await _context.Reservations.FindAsync(id);
 
-            return reservation;
-        }
+			if (reservation == null)
+			{
+				return NotFound();
+			}
 
-        // PUT: api/Reservations/5
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutReservation(int id, Reservation reservation)
-        {
-            if (id != reservation.Id)
-            {
-                return BadRequest();
-            }
+			return _mapper.Map<ReservationDTO>(reservation);
+		}
 
-            _context.Entry(reservation).State = EntityState.Modified;
+		// POST: api/reservations
+		[HttpPost]
+		public async Task<ActionResult<Reservation>> PostReservation(ReservationInputDTO reservationInputDTO)
+		{
+			if (reservationInputDTO.BookId <= 0)
+			{
+				return BadRequest();
+			}
 
-            try
-            {
-                await _context.SaveChangesAsync();
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!ReservationExists(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
+			if (reservationInputDTO.FromDate < DateTime.Now.Date)
+			{
+				return BadRequest();
+			}
 
-            return NoContent();
-        }
+			if ((int)Math.Ceiling((reservationInputDTO.ToDate - reservationInputDTO.FromDate).TotalDays) <= 0)
+			{
+				return BadRequest();
+			}
 
-        // POST: api/Reservations
-        // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPost]
-        public async Task<ActionResult<Reservation>> PostReservation(Reservation reservation)
-        {
-            _context.Reservations.Add(reservation);
-            await _context.SaveChangesAsync();
+			var reservation = new Reservation(reservationInputDTO.FromDate, reservationInputDTO.ToDate, reservationInputDTO.IsQuickPickUp, reservationInputDTO.BookId);
 
-            return CreatedAtAction("GetReservation", new { id = reservation.Id }, reservation);
-        }
+			LibraryItem book = await _context.LibraryItems.FindAsync(reservation.BookId);
 
-        // DELETE: api/Reservations/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteReservation(int id)
-        {
-            var reservation = await _context.Reservations.FindAsync(id);
-            if (reservation == null)
-            {
-                return NotFound();
-            }
+			if (book == null)
+			{
+				return NotFound();
+			}
 
-            _context.Reservations.Remove(reservation);
-            await _context.SaveChangesAsync();
+			ReservationPrice reservationPrice = _services.CalculateReservationPrice(book, reservation.FromDate, reservation.ToDate, reservation.IsQuickPickUp);
 
-            return NoContent();
-        }
+			reservation.Book = book;
+			reservation.TotalPrice = reservationPrice;
 
-        private bool ReservationExists(int id)
-        {
-            return _context.Reservations.Any(e => e.Id == id);
-        }
-    }
+			_context.Reservations.Add(reservation);
+			await _context.SaveChangesAsync();
+
+			var mappedReservation = _mapper.Map<ReservationDTO>(reservation);
+
+			return CreatedAtAction("GetReservation", new { id = mappedReservation.Id }, mappedReservation);
+		}
+
+		// POST: api/reservationPrice
+		[Route("/api/reservationPrice")]
+		[HttpGet]
+		public async Task<ActionResult<ReservationPrice>> GetReservationPrice(
+			[FromQuery] ReservationPriceInputDTO reservationPriceInputDTO
+		)
+		{
+			if (reservationPriceInputDTO.BookId <= 0)
+			{
+				return BadRequest();
+			}
+
+			if (reservationPriceInputDTO.FromDate < DateTime.Now.Date)
+			{
+				return BadRequest();
+			}
+
+			if (reservationPriceInputDTO.FromDate > reservationPriceInputDTO.ToDate)
+			{
+				return BadRequest();
+			}
+
+
+			LibraryItem book = await _context.LibraryItems.FindAsync(reservationPriceInputDTO.BookId);
+
+			if (book == null)
+			{
+				return NotFound();
+			}
+
+			ReservationPrice reservationPrice = _services.CalculateReservationPrice(book, reservationPriceInputDTO.FromDate, reservationPriceInputDTO.ToDate, reservationPriceInputDTO.IsQuickPickup);
+
+			var mapperReservationPrice = _mapper.Map<ReservationPriceDTO>(reservationPrice);
+
+			return Ok(mapperReservationPrice);
+		}
+
+		// DELETE: api/reservations/5
+		[HttpDelete("{id}")]
+		public async Task<IActionResult> DeleteReservation(int id)
+		{
+			var reservation = await _context.Reservations.FindAsync(id);
+			if (reservation == null)
+			{
+				return NotFound();
+			}
+
+			_context.Reservations.Remove(reservation);
+			await _context.SaveChangesAsync();
+
+			return NoContent();
+		}
+	}
 }
