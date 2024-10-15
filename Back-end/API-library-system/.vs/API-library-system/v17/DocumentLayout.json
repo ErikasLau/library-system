@@ -3,10 +3,6 @@
   "WorkspaceRootPath": "C:\\Users\\Erikas\\Desktop\\Erikas\\Present-connections-intern-task\\library-system\\Back-end\\API-library-system\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{F71F4CAA-7007-40C6-8197-00C6AD7BC5BB}|API-library-system.csproj|c:\\users\\erikas\\desktop\\erikas\\present-connections-intern-task\\library-system\\back-end\\api-library-system\\dto\\reservationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{F71F4CAA-7007-40C6-8197-00C6AD7BC5BB}|API-library-system.csproj|solutionrelative:dto\\reservationdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{F71F4CAA-7007-40C6-8197-00C6AD7BC5BB}|API-library-system.csproj|c:\\users\\erikas\\desktop\\erikas\\present-connections-intern-task\\library-system\\back-end\\api-library-system\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{F71F4CAA-7007-40C6-8197-00C6AD7BC5BB}|API-library-system.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
@@ -18,32 +14,19 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "Program.cs",
               "DocumentMoniker": "C:\\Users\\Erikas\\Desktop\\Erikas\\Present-connections-intern-task\\library-system\\Back-end\\API-library-system\\Program.cs",
               "RelativeDocumentMoniker": "Program.cs",
               "ToolTip": "C:\\Users\\Erikas\\Desktop\\Erikas\\Present-connections-intern-task\\library-system\\Back-end\\API-library-system\\Program.cs",
               "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAWAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAACAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-14T19:23:09.796Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "ReservationDTO.cs",
-              "DocumentMoniker": "C:\\Users\\Erikas\\Desktop\\Erikas\\Present-connections-intern-task\\library-system\\Back-end\\API-library-system\\DTO\\ReservationDTO.cs",
-              "RelativeDocumentMoniker": "DTO\\ReservationDTO.cs",
-              "ToolTip": "C:\\Users\\Erikas\\Desktop\\Erikas\\Present-connections-intern-task\\library-system\\Back-end\\API-library-system\\DTO\\ReservationDTO.cs",
-              "RelativeToolTip": "DTO\\ReservationDTO.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAApAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-15T12:28:57.317Z",
               "EditorCaption": ""
             }
           ]

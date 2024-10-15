@@ -3,7 +3,6 @@ using API_library_system.DTO;
 using API_library_system.Models;
 using API_library_system.Services;
 using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,9 +14,9 @@ namespace API_library_system.Controllers
 	{
 		private readonly AppDbContext _context;
 		private readonly IMapper _mapper;
-		private readonly FileService _fileService;
+		private readonly IFileService _fileService;
 
-		public LibraryItemsController(AppDbContext context, IMapper mapper, FileService fileService)
+		public LibraryItemsController(AppDbContext context, IMapper mapper, IFileService fileService)
 		{
 			_context = context;
 			_mapper = mapper;
@@ -30,10 +29,12 @@ namespace API_library_system.Controllers
 		{
 			if (search != null)
 			{
-				return await _context.LibraryItems.Where(r => r.Name.Contains(search) || r.Year.ToString().Contains(search) || r.BookType.ToString().Contains(search)).ProjectTo<LibraryItemDTO>(_mapper.ConfigurationProvider).ToListAsync();
+				var searchedLibrary = await _context.LibraryItems.Where(r => r.Name.Contains(search) || r.Year.ToString().Contains(search) || r.BookType.ToString().Contains(search)).ToListAsync();
+				return _mapper.Map<IEnumerable<LibraryItem>, List<LibraryItemDTO>>(searchedLibrary);
 			}
 
-			return await _context.LibraryItems.ProjectTo<LibraryItemDTO>(_mapper.ConfigurationProvider).ToListAsync();
+			var library = await _context.LibraryItems.ToListAsync();
+			return _mapper.Map<IEnumerable<LibraryItem>, List<LibraryItemDTO>>(library);
 		}
 
 		// GET: api/library/5
@@ -53,17 +54,16 @@ namespace API_library_system.Controllers
 		[Route("book")]
 		// POST: api/library/audiobook
 		[HttpPost]
-		[ProducesResponseType(StatusCodes.Status201Created)]
-		public async Task<ActionResult<LibraryItemDTO>> PostLibraryItemBook([FromForm] string Name, [FromForm] DateTime PublishDate, IFormFile File)
+		public async Task<ActionResult<LibraryItemDTO>> PostLibraryItemBook([FromForm] LibraryItemInputDTO libraryItemInputDTO)
 		{
-			if (!_fileService.AllowedDataType(File))
+			if (!_fileService.CheckAllowedDataType(libraryItemInputDTO.File))
 			{
 				return BadRequest();
 			}
 
-			byte[] imageBytes = await _fileService.ConvertImageToBytesAsync(File);
+			byte[] imageBytes = await _fileService.ConvertImageToBytesAsync(libraryItemInputDTO.File);
 
-			Book book = new(Name, PublishDate, imageBytes, BookType.Book);
+			Book book = new(libraryItemInputDTO.Name, libraryItemInputDTO.PublishDate, imageBytes, BookType.Book);
 
 			_context.LibraryItems.Add(book);
 			await _context.SaveChangesAsync();
@@ -76,13 +76,12 @@ namespace API_library_system.Controllers
 		[Route("audiobook")]
 		// POST: api/library/audiobook
 		[HttpPost]
-		[ProducesResponseType(StatusCodes.Status201Created)]
-		public async Task<ActionResult<LibraryItemDTO>> PostLibraryItemAudiobook([FromForm] string Name, [FromForm] DateTime PublishDate, IFormFile File)
+		public async Task<ActionResult<LibraryItemDTO>> PostLibraryItemAudiobook([FromForm] LibraryItemInputDTO libraryItemInputDTO)
 		{
 			var imageUtils = new FileService();
-			var imageBytes = await imageUtils.ConvertImageToBytesAsync(File);
+			var imageBytes = await imageUtils.ConvertImageToBytesAsync(libraryItemInputDTO.File);
 
-			Audiobook audiobook = new(Name, PublishDate, imageBytes, BookType.Audiobook);
+			Audiobook audiobook = new(libraryItemInputDTO.Name, libraryItemInputDTO.PublishDate, imageBytes, BookType.Audiobook);
 
 			_context.LibraryItems.Add(audiobook);
 			await _context.SaveChangesAsync();

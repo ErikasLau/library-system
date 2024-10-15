@@ -99,7 +99,7 @@
           "application/json",
           "text/json"
         ],
-        "StatusCode": 201
+        "StatusCode": 200
       }
     ]
   },
@@ -135,7 +135,7 @@
           "application/json",
           "text/json"
         ],
-        "StatusCode": 201
+        "StatusCode": 200
       }
     ]
   },
@@ -148,22 +148,22 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "fromDate",
+        "Name": "FromDate",
         "Type": "System.DateTime",
         "IsRequired": false
       },
       {
-        "Name": "toDate",
+        "Name": "ToDate",
         "Type": "System.DateTime",
         "IsRequired": false
       },
       {
-        "Name": "isQuickPickup",
+        "Name": "IsQuickPickup",
         "Type": "System.Boolean",
         "IsRequired": false
       },
       {
-        "Name": "bookId",
+        "Name": "BookId",
         "Type": "System.Int32",
         "IsRequired": false
       }
@@ -209,8 +209,8 @@
     "Order": 0,
     "Parameters": [
       {
-        "Name": "reservation",
-        "Type": "API_library_system.Models.Reservation",
+        "Name": "reservationInputDTO",
+        "Type": "API_library_system.DTO.ReservationInputDTO",
         "IsRequired": true
       }
     ],

@@ -1,10 +1,9 @@
 ﻿using API_library_system.Models;
 using Microsoft.EntityFrameworkCore;
-using System.Reflection.Metadata;
 
 namespace API_library_system.Data
 {
-	public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
+    public class AppDbContext(DbContextOptions<AppDbContext> options) : DbContext(options)
 	{
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{

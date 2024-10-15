@@ -16,7 +16,13 @@ namespace API_library_system.Mapper
 			CreateMap<Audiobook, LibraryItemDTO>()
 				.ForMember(dest => dest.BookType, opt => opt.MapFrom(src => src.BookType));
 
-			CreateMap<ReservationPrice, ReservationPriceDTO>();
+			CreateMap<ReservationPrice, ReservationPriceDTO>()
+				.ForMember(dest => dest.TotalSum, opt => opt.MapFrom(src => src.TotalSum))
+				.ForMember(dest => dest.DiscountSum, opt => opt.MapFrom(src => src.DiscountSum))
+				.ForMember(dest => dest.TotalDays, opt => opt.MapFrom(src => src.TotalDays))
+				.ForMember(dest => dest.ServiceFee, opt => opt.MapFrom(src => src.ServiceFee))
+				.ForMember(dest => dest.QuickPickupFee, opt => opt.MapFrom(src => src.QuickPickupFee));
+
 			CreateMap<Reservation, ReservationDTO>()
 				.ForMember(dest => dest.Book, opt => opt.MapFrom((reservation, reservationDTO, i, context) =>
 				{

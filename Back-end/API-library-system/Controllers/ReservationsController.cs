@@ -3,7 +3,6 @@ using API_library_system.DTO;
 using API_library_system.Models;
 using API_library_system.Services;
 using AutoMapper;
-using AutoMapper.QueryableExtensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -15,9 +14,9 @@ namespace API_library_system.Controllers
 	{
 		private readonly AppDbContext _context;
 		private readonly IMapper _mapper;
-		private readonly ReservationServices _services;
+		private readonly IReservationServices _services;
 
-		public ReservationsController(AppDbContext context, ReservationServices services, IMapper mapper)
+		public ReservationsController(AppDbContext context, IReservationServices services, IMapper mapper)
 		{
 			_context = context;
 			_services = services;
@@ -28,11 +27,12 @@ namespace API_library_system.Controllers
 		[HttpGet]
 		public async Task<ActionResult<IEnumerable<ReservationDTO>>> GetReservations()
 		{
-			return await _context.Reservations
+			var reservations = await _context.Reservations
 				.Include(r => r.Book)
 				.Include(r => r.TotalPrice)
-				.ProjectTo<ReservationDTO>(_mapper.ConfigurationProvider)
 				.ToListAsync();
+
+			return _mapper.Map<IEnumerable<Reservation>, List<ReservationDTO>>(reservations);
 		}
 
 		// GET: api/reservations/5
@@ -51,17 +51,24 @@ namespace API_library_system.Controllers
 
 		// POST: api/reservations
 		[HttpPost]
-		public async Task<ActionResult<Reservation>> PostReservation(Reservation reservation)
+		public async Task<ActionResult<Reservation>> PostReservation(ReservationInputDTO reservationInputDTO)
 		{
-			if (reservation.BookId <= 0)
+			if (reservationInputDTO.BookId <= 0)
 			{
 				return BadRequest();
 			}
 
-			if (reservation.FromDate > reservation.ToDate)
+			if (reservationInputDTO.FromDate < DateTime.Now.Date)
 			{
 				return BadRequest();
 			}
+
+			if (reservationInputDTO.FromDate > reservationInputDTO.ToDate)
+			{
+				return BadRequest();
+			}
+
+			var reservation = new Reservation(reservationInputDTO.FromDate, reservationInputDTO.ToDate, reservationInputDTO.IsQuickPickUp, reservationInputDTO.BookId);
 
 			LibraryItem book = await _context.LibraryItems.FindAsync(reservation.BookId);
 
@@ -87,25 +94,33 @@ namespace API_library_system.Controllers
 		[Route("/api/reservationPrice")]
 		[HttpGet]
 		public async Task<ActionResult<ReservationPrice>> GetReservationPrice(
-			[FromQuery] DateTime fromDate,
-			[FromQuery] DateTime toDate,
-			[FromQuery] bool isQuickPickup,
-			[FromQuery] int bookId
+			[FromQuery] ReservationPriceInputDTO reservationPriceInputDTO
 		)
 		{
-			if (bookId <= 0)
+			if (reservationPriceInputDTO.BookId <= 0)
 			{
 				return BadRequest();
 			}
 
-			LibraryItem book = await _context.LibraryItems.FindAsync(bookId);
+			if (reservationPriceInputDTO.FromDate < DateTime.Now.Date)
+			{
+				return BadRequest();
+			}
+
+			if (reservationPriceInputDTO.FromDate > reservationPriceInputDTO.ToDate)
+			{
+				return BadRequest();
+			}
+
+
+			LibraryItem book = await _context.LibraryItems.FindAsync(reservationPriceInputDTO.BookId);
 
 			if (book == null)
 			{
 				return NotFound();
 			}
 
-			ReservationPrice reservationPrice = _services.CalculateReservationPrice(book, fromDate, toDate, isQuickPickup);
+			ReservationPrice reservationPrice = _services.CalculateReservationPrice(book, reservationPriceInputDTO.FromDate, reservationPriceInputDTO.ToDate, reservationPriceInputDTO.IsQuickPickup);
 
 			var mapperReservationPrice = _mapper.Map<ReservationPriceDTO>(reservationPrice);
 

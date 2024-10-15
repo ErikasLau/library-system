@@ -3,7 +3,7 @@
 	public interface IFileService
 	{
 		Task<byte[]> ConvertImageToBytesAsync(IFormFile imageFile);
-		Boolean AllowedDataType(IFormFile file);
+		Boolean CheckAllowedDataType(IFormFile file);
 	}
 
 	public class FileService() : IFileService
@@ -14,7 +14,7 @@
 		{
 			ArgumentNullException.ThrowIfNull(imageFile);
 
-			if (!AllowedDataType(imageFile))
+			if (!CheckAllowedDataType(imageFile))
 			{
 				throw new ArgumentException($"Only {string.Join(",", AllowedFileExtensions)} are allowed.");
 			}
@@ -24,7 +24,7 @@
 			return memoryStream.ToArray();
 		}
 
-		public Boolean AllowedDataType(IFormFile imageFile)
+		public Boolean CheckAllowedDataType(IFormFile imageFile)
 		{
 			if (imageFile == null || !AllowedFileExtensions.Any(ext => imageFile.FileName.EndsWith(ext, StringComparison.OrdinalIgnoreCase)))
 			{
