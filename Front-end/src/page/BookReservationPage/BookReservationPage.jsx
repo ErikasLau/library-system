@@ -6,8 +6,8 @@ import {
   getReservationPrice,
   postReservation,
 } from "../../api/ApiReservations";
-import BookReservation from "../BookReservation/BookReservation";
-import ReservationCheck from "./ReservationCheck";
+import BookReservation from "../../components/BookReservation/BookReservation";
+import ReservationCheck from "../../components/ReservationCheck/ReservationCheck";
 
 const defaultReservationDetails = {
   totalDays: 0,

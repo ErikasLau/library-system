@@ -63,7 +63,7 @@ namespace API_library_system.Controllers
 				return BadRequest();
 			}
 
-			if (reservationInputDTO.FromDate > reservationInputDTO.ToDate)
+			if ((int)Math.Ceiling((reservationInputDTO.ToDate - reservationInputDTO.FromDate).TotalDays) <= 0)
 			{
 				return BadRequest();
 			}
